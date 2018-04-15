@@ -1,0 +1,5 @@
+git status # nderungen sehen
+git add -A # datein hinzufügen
+git commit # neues commit erstellen
+git push # commits hochlaen
+git pull # änderungen runterladen
