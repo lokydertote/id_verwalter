@@ -1,0 +1,8 @@
+## Interface: 70300
+## Title: IDVerwalter
+## Autor: Loky
+## Version: 0.1
+## Savedvariables: IDVerwalter1
+## SavedvariablesPerCharacter: IDSchlachtzuege, IDDungeons, IDWeltboss, IDPVP 
+
+IDVerwalter.xml

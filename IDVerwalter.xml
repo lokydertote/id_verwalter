@@ -1,0 +1,367 @@
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+    <Script file="IDVerwalter.lua" />
+	<Frame name="TestFrame" parent="UIParent"  movable="true" enableMouse="true">
+	    <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+		<Backdrop 
+				bgFile="Interface/DialogFrame/UI-DialogBox-Background"
+				edgeFile="Interface/DialogFrame/UI-DialogBox-Border" 
+				title="true">
+			<EdgeSize val="32"/>
+			<TileSize val="32"/>
+			<BackgroundInsets left="4" right="4" top="4" bottom="4"/>
+	
+		</Backdrop>
+        <Scripts>
+            <OnLoad>
+                IDV_OnLoad(self); PlayerBegruesung(self);
+            </OnLoad>
+        </Scripts>
+	    <Size>
+            <AbsDimension x="200" y="350" />
+        </Size>
+		<Layers>
+            <Layer>
+                <FontString name="Text1" inherits="GameFontNormal" text="ID Verwalter">
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="TOPLEFT">
+                            <Offset x="20" y="-20">
+                                <AbsDimension x="5" y="-5" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			<Button name="DungeonButton" inherits="UIPanelButtonTemplate" id="11" text="Dungeon">
+                <Size>
+                    <AbsDimension x="150" y="35" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset x="15" y="-50" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Dungeon(self); PlayerBegruesung(self);</OnClick>
+                </Scripts>			
+            </Button>
+			<Button name="PVPButton" inherits="UIPanelButtonTemplate" id="12" text="PVP">
+                <Size>
+                    <AbsDimension x="150" y="35" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset x="15" y="-90" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_PVP(self);</OnClick>
+                </Scripts>
+            </Button>
+			<Button name="CloseButton" inherits="UIPanelButtonTemplate" id="19" text=" x ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-2" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Close(self);</OnClick>
+                </Scripts>
+			</Button>
+			<Button name="OptButton3" inherits="UIPanelButtonTemplate" id="19" text=" o ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-15" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Opt(self);</OnClick>
+                </Scripts>
+			</Button>
+			<CheckButton name="$parentCheckButtonD" inherits="OptionsCheckButtonTemplate" checked="fals">
+				<Anchors>
+					<Anchor point="LEFT">
+						<Offset>
+							<AbsDimension x="20" y="0"></AbsDimension>
+						</Offset>
+					</Anchor>
+					<Anchor point="TOPLEFT">
+                        <Offset x="165" y="-55" />
+					</Anchor>
+                </Anchors>
+			</CheckButton>
+			<CheckButton name="$parentCheckButtonP" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Anchors>
+					<Anchor point="LEFT">
+						<Offset>
+							<AbsDimension x="20" y="0"></AbsDimension>
+						</Offset>
+					</Anchor>
+					<Anchor point="TOPLEFT">
+                        <Offset x="165" y="-95" />
+					</Anchor>
+                </Anchors>
+			</CheckButton>
+		</Frames>
+    </Frame>
+	
+	<Frame name="DungeonFrame" parent="UIParent"  movable="true" enableMouse="true" hidden="true">
+	    <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+		<Backdrop 
+				bgFile="Interface/DialogFrame/UI-DialogBox-Background"
+				edgeFile="Interface/DialogFrame/UI-DialogBox-Border" 
+				title="true">
+			<EdgeSize val="32"/>
+			<TileSize val="32"/>
+			<BackgroundInsets left="4" right="4" top="4" bottom="4"/>
+		</Backdrop>
+	    <Size>
+            <AbsDimension x="200" y="350" />
+        </Size>
+		<Layers>
+            <Layer>
+                <FontString name="Text1" inherits="GameFontNormal" text="Dungeon ID Verwalter">
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="TOPLEFT">
+                            <Offset x="20" y="-20">
+                                <AbsDimension x="20" y="-20" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+		<Layers>
+            <Layer>
+                <FontString name="Text2" inherits="GameFontNormal" text="Mytisch+">
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="TOPLEFT">
+                            <Offset x="20" y="-80">
+                                <AbsDimension x="20" y="-20" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+		<Frame>
+			<CheckButton name="$parentCheckButton" inherits="OptionsCheckButtonTemplate" checked="true">
+				<Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+				<Anchors>
+					<Anchor point="LEFT">
+						 <Offset x="20" y="-100">
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+		</Frame>
+		<Frames>
+			<Button name="CloseButton2" inherits="UIPanelButtonTemplate" id="19" text=" x ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-2" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Close(self);</OnClick>
+                </Scripts>
+			</Button>
+		</Frames>
+		<Frames>
+			<Button name="OptButton3" inherits="UIPanelButtonTemplate" id="19" text=" o ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-15" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Opt(self);</OnClick>
+                </Scripts>
+			</Button>
+		</Frames>
+		<Frames>
+			<Button name="OptButton2" inherits="UIPanelButtonTemplate" id="19" text=" r ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-23" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Return(self);</OnClick>
+                </Scripts>
+			</Button>
+		</Frames>
+    </Frame>
+	
+	<Frame name="PVPFrame" parent="UIParent"  movable="true" enableMouse="true" hidden="true">
+	    <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+		<Backdrop 
+				bgFile="Interface/DialogFrame/UI-DialogBox-Background"
+				edgeFile="Interface/DialogFrame/UI-DialogBox-Border" 
+				title="true">
+			<EdgeSize val="32"/>
+			<TileSize val="32"/>
+			<BackgroundInsets left="4" right="4" top="4" bottom="4"/>
+		</Backdrop>
+	    <Size>
+            <AbsDimension x="200" y="350" />
+        </Size>
+		<Layers>
+            <Layer>
+                <FontString name="Text1" inherits="GameFontNormal" text="PVP ID Verwalter">
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="TOPLEFT">
+                            <Offset x="20" y="-20">
+                                <AbsDimension x="10" y="-10" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			<Button name="CloseButton3" inherits="UIPanelButtonTemplate" id="19" text=" x ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-2" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Close(self); </OnClick>
+                </Scripts>
+			</Button>
+		</Frames>
+		<Frames>
+			<Button name="OptButton3" inherits="UIPanelButtonTemplate" id="19" text=" o ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-15" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Opt(self);</OnClick>
+                </Scripts>
+			</Button>
+		</Frames>
+		<Frames>
+			<Button name="OptButton2" inherits="UIPanelButtonTemplate" id="19" text=" r ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-23" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Return(self);</OnClick>
+                </Scripts>
+			</Button>
+		</Frames>
+    </Frame>
+	
+	<Frame name="OptFrame" parent="UIParent"  movable="true" enableMouse="true" hidden="true">
+	    <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+		<Backdrop 
+				bgFile="Interface/DialogFrame/UI-DialogBox-Background"
+				edgeFile="Interface/DialogFrame/UI-DialogBox-Border" 
+				title="true">
+			<EdgeSize val="32"/>
+			<TileSize val="32"/>
+			<BackgroundInsets left="4" right="4" top="4" bottom="4"/>
+		</Backdrop>
+	    <Size>
+            <AbsDimension x="200" y="350" />
+        </Size>
+		<Layers>
+            <Layer>
+                <FontString name="Text1" inherits="GameFontNormal" text="Optionen">
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="TOPLEFT">
+                            <Offset x="20" y="-20">
+                                <AbsDimension x="10" y="-10" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			<Button name="CloseButton3" inherits="UIPanelButtonTemplate" id="19" text=" x ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-2" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Close(self);</OnClick>
+                </Scripts>
+			</Button>
+		</Frames>
+		<Frames>
+			<Button name="OptButton3" inherits="UIPanelButtonTemplate" id="19" text=" o ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-15" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Opt(self);</OnClick>
+                </Scripts>
+			</Button>
+		</Frames>
+		<Frames>
+			<Button name="OptButton2" inherits="UIPanelButtonTemplate" id="19" text=" r ">
+                <Size>
+                    <AbsDimension x="8" y="8" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-23" y="-2" />
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>IDV_Return(self);</OnClick>
+                </Scripts>
+			</Button>
+		</Frames>
+    </Frame>
+</Ui>

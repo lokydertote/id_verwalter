@@ -1,0 +1,146 @@
+
+
+
+--[[
+## Interface: 70300
+## Title: IDVerwalter
+## Autor: Loky
+## Version: 0.1
+--]]
+--[[
+
+IDSelection = {}
+
+function IDSelection:Init(event, addon)
+	print("Event: " .. event .. " und Addon: " ..addon)
+	if (event == "ADDON_LOADED" and addon == "IDVerwalter") then
+		IDSelection:CreateGUI(IDSelectionFrame)
+	end
+end
+
+local selectionFrame =	CreateFrame("Frame", "IDSelectionFrame", UIParent)
+selectionFrame:SetScript("onEvent", IDSelection.Init)
+selectionFrame:RegisterEvent("ADDON_LOADED")
+
+function IDV_OnLoad(self)
+---------
+    selectionFrame:RegisterEvent("ADDON_LOADED")
+	
+end
+
+
+
+
+
+
+
+
+
+--Selection Window
+
+--CreateGUI
+function IDSelection:CreateGUI(frame)
+	
+	--window coommon 
+	local frame = IDSelection:CreateWindow(frame)
+
+--Button	
+	--Button Dungeon 
+	local Dungeon = IDSelection:CreateButton(frame, "DungeonButton", "Dungeon", 150, 35, 20, -50)
+--	dungeonFrame:SetScript("OnClick" function() IDDungeon:CreateGUI(IDDungeonFrame) end)
+	--Button Schlachtfelder
+	local Schlachtfelder = IDSelection:CreateButton(frame, "SchlachtfelderButton", "Schlachtfelder", 150, 35, 20, -90)
+	--Button Schlatzüge
+	local Schlatzuege = IDSelection:CreateButton(frame, "SchlatzügeButton", "Schlatzüge", 150, 35, 20, -130)
+	--Button WeltQuest
+	local WeltQuest = IDSelection:CreateButton(frame, "WeltQuestButton", "WeltQuest", 150, 35, 20, -170)
+	--Button WeltBoss
+	local WeltBoss = IDSelection:CreateButton(frame, "WeltBossButton", "WeltBoss", 150, 35, 20, -210)
+	--Button close 
+	local close = IDSelection:CreateButton(frame, "closeButton", nil, 30, 30, 165, -5,"UIPanelCloseButton")
+	
+	--EditBox Hinzufügen
+	local editbox1 = IDSelection:CreateEditBox(frame, "editbox1", 150, 35, 23, -250)
+
+	--font greeting Uberschrift
+	local greeting = IDSelection:CreateFont(frame, "fontGreeting", "IDVerwalter", 15, -15, 25)
+	--font greeting Version
+	local Version = IDSelection:CreateFont(frame, "fontVersion", "V0.1", 165, -325, 12)
+end
+--[[
+function IDDungeon:CreateGUI(frame)
+	--window coommon 
+	local frame = IDSelection:CreateWindow(frame)
+	
+	--Button2 close 
+	local close = IDSelection:CreateButton(frame, "closeButton", nil, 30, 30, 465, -5,"UIPanelCloseButton")
+	
+	
+	--font greeting Uberschrift
+	local greeting = IDSelection:CreateFont(frame, "fontGreeting", "IDDungeon", 150, -15, 25)
+	--font greeting Version
+	local Version = IDSelection:CreateFont(frame, "fontVersion", "V0.1", 465, -475, 12)
+	--font tägliche Hero
+	local täglicheHero = IDSelection:CreateFont(frame, "täglicheHero", "tägliche Hero", 20, -50, 15)
+
+	
+end
+--]]
+
+--CreateWindow
+function IDSelection:CreateWindow(frame)
+	frame:SetWidth(200)  			--Breite
+	frame:SetHeight(350)			--Hoehe
+	frame:SetPoint("Center", 0, 0)	--Position
+	frame:SetBackdrop(				--Fester
+		{
+			bgFile = "Interface/DialogFrame/UI-DialogBox-Background",
+			edgeFile = "Interface/DialogFrame/UI-DialogBox-Border",
+			tile= true, tileSize = 32, edgeSize = 32,
+			insets = {left = 4, right =4, top = 4, bottom = 4}
+		}
+	)	
+	frame:SetBackdropColor(0.0, 0.0, 0.0, 1.0)
+	return (frame)
+end
+
+
+--CreateButton
+function IDSelection:CreateButton(frame, name, text, width, height, x, y, template)
+	if (template == nil) then
+		template = "OptionsButtonTemplate"
+	end
+	local button = CreateFrame("Button", name, frame, template)
+		button:Set	Point("TOPLEFT", x, y)
+		button:SetWidth(width)
+		button:SetHeight(height)
+		button:SetText(text)
+		return (button)
+end
+
+
+--CreateEditBox
+function IDSelection:CreateEditBox(frame, name, width, height, x, y)
+	local editBox = CreateFrame("EditBox", name, frame, "InputBoxTemplate")
+	editBox:SetPoint("TOPLEFT", x, y)
+	editBox:SetWidth(width)
+	editBox:SetHeight(height)
+	editBox:SetAutoFocus(false)
+	editBox:Show()
+	return(editbox)
+end
+	
+	
+--CreateFont
+function IDSelection:CreateFont(frame, name, text, x, y, size)
+	if size == nil then
+		size = 15
+	end
+	local fontString = frame:CreateFontString(name)
+		fontString:SetPoint("TOPLEFT", x, y)
+		fontString:SetFont("Fonts\\MORPHEUS.ttf", size, "")
+		fontString:SetText(text)
+	return (fontString)
+end
+--]]
+
